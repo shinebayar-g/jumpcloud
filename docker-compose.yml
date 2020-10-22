@@ -1,0 +1,54 @@
+version: "2.1"
+services:
+  # flask-app:
+  #   image: shinebayar/jumpcloud:v0.1.0
+  #   container_name: flask-app
+  #   restart: unless-stopped
+  #   environment:
+  #     PORT: "3300"
+  #   ports:
+  #     - "5000:5000"
+  #   depends_on:
+  #     mysql:
+  #       condition: service_healthy
+  #   networks:
+  #     - flask-app
+
+  mysql:
+    image: mysql:5.7.32
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: XspE27F6veLzSBGk
+      MYSQL_DATABASE: jumpcloud
+      MYSQL_USER: jumpcloud
+      MYSQL_PASSWORD: PHbnDDB8yFnvCQVK
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - flask-app
+    healthcheck:
+      test: "/etc/init.d/mysql status"
+      interval: 10s
+      timeout: 3s
+      retries: 10
+
+  pma:
+    image: phpmyadmin/phpmyadmin:5.0.4
+    container_name: pma
+    restart: unless-stopped
+    environment:
+      PMA_HOST: "mysql"
+      PMA_PORT: "3306"
+    ports:
+      - "8080:80"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - flask-app
+
+networks:
+  flask-app:
+    driver: bridge
