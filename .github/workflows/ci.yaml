@@ -62,7 +62,7 @@ jobs:
 
       - name: Test with pytest
         env:
-          DB_HOST: mysql
+          DB_HOST: localhost
           DB_PORT: "3306"
           DB_NAME: jumpcloud
           DB_USER: jumpcloud
@@ -70,6 +70,4 @@ jobs:
           X_API_KEY: ${{ secrets.X_API_KEY }}
         run: |
           python src/app.py &
-          apt-get update && apt-get install -y net-tools
-          netstat -plnt
           pytest src/tests/test_routes.py
