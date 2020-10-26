@@ -18,25 +18,21 @@ jobs:
   flask-app:
     runs-on: ubuntu-18.04
 
-    env:
-      MYSQL_ROOT_PASSWORD: XspE27F6veLzSBGk
-      MYSQL_DATABASE: jumpcloud
-      MYSQL_USER: jumpcloud
-      MYSQL_PASSWORD: PHbnDDB8yFnvCQVK
-      DB_HOST: mysql
-      DB_PORT: "3306"
-      DB_NAME: jumpcloud
-      DB_USER: jumpcloud
-      DB_PASS: PHbnDDB8yFnvCQVK
-
     services:
       mysql:
         image: mysql:5.7.32
+        env:
+          MYSQL_ROOT_PASSWORD: XspE27F6veLzSBGk
+          MYSQL_DATABASE: jumpcloud
+          MYSQL_USER: jumpcloud
+          MYSQL_PASSWORD: PHbnDDB8yFnvCQVK
         ports:
           - 3306:3306
         options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 50
 
     steps:
+
+
       - uses: actions/checkout@v2
 
       - name: Use Python 3.7
@@ -65,6 +61,13 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
       - name: Test with pytest
+        env:
+          DB_HOST: mysql
+          DB_PORT: "3306"
+          DB_NAME: jumpcloud
+          DB_USER: jumpcloud
+          DB_PASS: PHbnDDB8yFnvCQVK
+          X_API_KEY: {{ secrets.X_API_KEY }}
         run: |
           python src/app.py &
           pytest src/tests/test_routes.py
