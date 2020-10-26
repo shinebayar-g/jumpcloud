@@ -29,12 +29,11 @@ services:
       MYSQL_DATABASE: jumpcloud
       MYSQL_USER: jumpcloud
       MYSQL_PASSWORD: PHbnDDB8yFnvCQVK
-# Uncomment to persist mysql data
+# Optional: Persist mysql data
 #    volumes:
 #      - ./mysql-data:/var/lib/mysql
-# Uncomment to enable mysql on network
-#    ports:
-#      - "3306:3306"
+    ports:
+      - "3306:3306"
     networks:
       - flask-app
     healthcheck:
