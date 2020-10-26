@@ -70,4 +70,6 @@ jobs:
           X_API_KEY: ${{ secrets.X_API_KEY }}
         run: |
           python src/app.py &
+          apt-get update && apt-get install -y net-tools
+          netstat -plnt
           pytest src/tests/test_routes.py
