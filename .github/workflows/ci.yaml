@@ -58,4 +58,5 @@ jobs:
 
       - name: Test with pytest
         run: |
+          python src/app.py
           pytest src/tests/test_routes.py

@@ -13,6 +13,7 @@ def test_get_systemusers():
                             headers=request_headers)
     assert response.status_code == 200
 
+
 def test_get_info():
     response = requests.get(request_base_url + 'info',
                             headers=request_headers)
