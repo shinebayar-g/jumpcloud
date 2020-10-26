@@ -1,6 +1,13 @@
 # Jumpcloud assignment
 
-## Usage:
+## Start server
+
+### Prerequisites
+
+1. Make sure you've fairly recent version of `docker` and `docker-compose` installed.
+1. Run `docker-compose up -d`
+
+## API Usage:
 
 *get useful information about your organization*
 ```shell script
