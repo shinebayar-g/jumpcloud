@@ -1,7 +1,9 @@
+import json
+
 from flask_restful import Resource, reqparse
-from requests.exceptions import HTTPError
 from sqlalchemy.inspection import inspect
-import requests, json
+from requests.exceptions import HTTPError
+import requests
 
 from models.systemuser import SystemUserModel
 from util import verify_response
