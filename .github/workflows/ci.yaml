@@ -70,4 +70,5 @@ jobs:
           X_API_KEY: ${{ secrets.X_API_KEY }}
         run: |
           python src/app.py &
+          sleep 5
           pytest src/tests/test_routes.py
