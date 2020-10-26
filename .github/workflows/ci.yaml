@@ -67,7 +67,7 @@ jobs:
           DB_NAME: jumpcloud
           DB_USER: jumpcloud
           DB_PASS: PHbnDDB8yFnvCQVK
-          X_API_KEY: {{ secrets.X_API_KEY }}
+          X_API_KEY: ${{ secrets.X_API_KEY }}
         run: |
           python src/app.py &
           pytest src/tests/test_routes.py
