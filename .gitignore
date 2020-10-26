@@ -129,3 +129,5 @@ dmypy.json
 .pyre/
 
 mysql-data
+.idea
+.vscode
