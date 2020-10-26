@@ -31,8 +31,6 @@ jobs:
         options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 50
 
     steps:
-
-
       - uses: actions/checkout@v2
 
       - name: Use Python 3.7
